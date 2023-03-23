@@ -1,0 +1,115 @@
+package package1;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class TXT2 {
+
+	public static void main(String[] args) {
+
+		
+		
+		String nombreFichero = "D:\\Luis\\Archivos\\cts.log-server1.log.2023-03-15-09-1.txt";
+		BufferedReader br = null;
+		String search = "174401010021511";
+		int i = 0;
+		int i2 = 0;
+		int i3 = 0;
+		String criterio = "";
+		//Obtener el nombre de la Instancia: 
+	        try {
+	            try (BufferedReader br2 = new BufferedReader(new FileReader(nombreFichero))) {
+	                String line;
+	                while ((line = br2.readLine()) != null) {
+	                	i++;
+	                	if (line.toLowerCase().contains(search.toLowerCase())) {
+	    					criterio = getWord(line);
+	    				}
+	                }
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		
+	        System.out.println("El criterio es : " + criterio);
+	        
+	        
+		try {
+			br = new BufferedReader(new FileReader(nombreFichero));
+			String texto = br.readLine();
+
+			while (texto != null) {
+				//System.out.println("Linea" + i + ": " + texto);
+				i3++;
+				try {
+					FileWriter fw = new FileWriter("D:\\Luis\\Archivos\\Salida23.txt");
+						//System.out.println("Linea" + i + ": " + texto2);
+						if (criterio != null) {
+							if (texto.toLowerCase().contains(criterio.toLowerCase())) {
+								System.out.println("Linea" + i3 + ": " + texto);
+								i2++;
+								fw.write(texto + "\n");
+							}
+						}
+					fw.close();
+				} catch (Exception e) {
+					System.out.println(e);
+				}
+				
+				texto = br.readLine();
+			}
+
+
+			System.out.println("\ncantidad de Registros: " + i);
+			System.out.println("cantidad de Registros con la búsqueda: " + i2);
+		}
+
+		catch (FileNotFoundException ex) {
+			System.out.println("Error: Fichero no encontrado");
+			ex.printStackTrace();
+		} catch (Exception ex) {
+			System.out.println("Error de lectura del fichero");
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (br != null) {
+					br.close();
+				}
+			} catch (Exception ex) {
+				System.out.println("Error al cerrar el fichero");
+				ex.printStackTrace();
+			}
+		}
+
+	}
+
+	public static String getWord(String txt) {
+
+		String[] chars = txt.split("(?=\\[)");
+		String chars2 = "";
+
+		for (int i1 = 0; i1 < chars.length; i1++) {
+			// System.out.println("i "+i1+": "+chars[i1]);
+			if (chars[i1].contains("[server")) {
+				// System.out.println("i> "+i+": "+chars[i]);
+				// System.out.println(":::: "+chars[i1+1]);
+				chars2 = chars[i1 + 1];
+			}
+		}
+
+		if (chars2.contains("[")) {
+			chars2 = chars2.replace("[", "");
+		}
+		if (chars2.contains("]")) {
+			chars2 = chars2.replace("]", "");
+		}
+
+		// System.out.println("Palabra a Buscar: "+chars2);
+		return chars2;
+	}
+
+}
