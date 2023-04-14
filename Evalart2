@@ -1,0 +1,40 @@
+//Escribir un programa que puede determinar si una matriz de n elementos es simétrica. 
+//Una matriz es simétrica si se ve igual si está invertida. Por ejemplo (‘a’, ‘b’, ‘c’, ‘d’, ‘d’, ‘c’, ‘b’, ‘a’) 
+//es simétrica y (‘a’, ‘b’, ‘c’, ‘d’, ‘d’, ‘b’, ‘c’, ‘a’) no lo es. Suponga que n será siempre un número par entre 
+//2 y 10 (No hay necesidad de validar esto). Si es simétrico su programa debe imprimir ‘Symmetric’, 
+//de lo contrario imprimir ‘Asymmetric’ (Asegurar de retornar exactamente estas cadenas ya que cualquier
+//diferencia producirá que la pregunta sea considerada como incorrecta) La salida de los datos para el
+//arreglo en el ejemplo (‘a’, ‘b’, ‘c’, ‘d’, ‘d’, ‘c’, ‘b’, ‘a’) y n=8 sería: Symmetric
+
+
+package package1;
+
+public class Test {
+	static String[] myArray = { "a", "b", "c", "d", "d", "c", "b", "a" };
+	static int n = 8;
+	
+		public static void main(String[] args) {
+		      boolean isSymmetric = true;
+		 
+		    for (int i = 0; i < n / 2; i++) {
+		    	System.out.println("1: "+myArray[i]);
+
+		    	System.out.println("2: "+myArray[n-i-1]);
+		    	System.out.println("----------------");
+		        if (!myArray[i].equals(myArray[n - i - 1])) {
+		        	//System.out.println(myArray[n - i - 1]);
+		            isSymmetric = false;
+		            break;
+		        }
+		    }
+		 
+		    if (isSymmetric) {
+		        System.out.println("Symmetric");
+		    } else {
+		        System.out.println("Asymmetric");
+		    }
+		
+
+	}
+
+}
