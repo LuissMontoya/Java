@@ -1,0 +1,81 @@
+//Escribir un programa en Java que recorra un arreglo y genere un histograma en base a los números de este. El arreglo se llama myArray y contiene 10 
+//elementos que corresponden a números enteros del 1 al 5. Un histograma representa que tanto un elemento 
+//aparece en un conjunto de datos (Debe mostrar la frecuencia para todos los números del 1 al 5, 
+//incluso si no están presentes en el arreglo). Por ejemplo, para el arreglo: myArray:=(1,2,1,3,3,1,2,1,5,1) 
+//el histograma se vería así:
+//1: ***
+//2: **
+//3: **
+//4:
+//5: *
+
+package package1;
+
+import java.util.Scanner;
+
+public class test3 {
+
+	
+	static int[] myArray = {1,2,1,3,3,1,2,1,5,1};
+	 
+	 
+	public static void main(String[] args) {
+		Scanner cr = new Scanner(System.in);
+	    int[] histogram = new int[5];
+	    
+	    for (int i = 0; i < myArray.length; i++) {
+	    	//System.out.println("i: "+ (histogram[myArray[i]-1]));
+	        histogram[myArray[i]-1]++;
+	    }
+	    
+	    for (int i = 0; i < histogram.length; i++) {
+	    	//System.out.println("i: "+ (histogram[i]));
+	    }
+	    
+	 /*
+	    for (int i = 0; i < 5; i++) {
+	        System.out.print((i+1) + ": ");
+	        for (int j = 0; j < histogram[i]; j++) {
+	            System.out.print("*");
+	        }
+	        System.out.println();
+	    }
+	    */
+	    
+	    String uno = "";
+	    String dos = "";
+	    String tres = "";
+	    String cuatro = "";
+	    String cinco = "";
+	    
+	    for (int i = 0; i < myArray.length; i++) {
+	    	switch(myArray[i]){
+	    		case 1:
+	    			uno +="*";
+	    			break;
+	    		case 2:
+	    			dos +="*";
+	    			break;
+	    		case 3:
+	    			tres +="*";
+	    			break;
+	    		case 4:
+	    			cuatro +="*";
+	    			break;
+	    		case 5:
+	    			cinco +="*";
+	    			break;
+	    		default:
+	    			System.out.println();	
+	    	}	
+	    }
+	    
+	    System.out.println("1: "+uno);
+	    System.out.println("2: "+dos);
+	    System.out.println("3: "+tres);
+	    System.out.println("4: "+cuatro);
+	    System.out.println("5: "+cinco);
+	    
+	}
+	
+}
